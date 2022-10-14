@@ -1,0 +1,14 @@
+---
+- name: Restar firewalld
+  service: 
+    name: firewalld
+    state: restarted
+
+- name: Start and enable snmpd
+  service: 
+    name: snmpd
+    enabled: true
+    state: started
+
+
+    

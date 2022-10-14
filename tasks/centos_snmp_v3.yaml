@@ -1,0 +1,35 @@
+---
+- name: Install packages for SNMP
+  dnf: 
+    name: 
+      - net-snmp
+      - net-snmp-utils
+    state: latest
+
+- name: Settings 'community string' and 'location' and 'contact' for SNMP 
+  lineinfile:
+    dest: "/etc/snmp/snmpd.conf"
+    line: '{{ item }}'
+  loop: 
+    - rocommunity {{ rocommunity }}
+    - syslocation {{ syslocation }}
+    - syscontact {{ syscontact }}
+
+- name: Configure firewalld for SNMP 
+  firewalld:  
+    port: "{{ item }}"
+    permanent: true 
+    state: enabled 
+  loop: 
+    - 161/udp
+    - 161/tcp
+    - 162/udp
+    - 162/tcp
+  notify:
+    - Restar firewalld
+
+- name: Create user for SNMP V3
+  command: 
+    cmd: net-snmp-create-v3-user -{{ method }} -A {{ authpass }} -a {{ md5_or_sha }} -X {{ privpass }} -x {{ aes_or_des }} {{ username }}
+  notify:
+    - Start and enable snmpd 
