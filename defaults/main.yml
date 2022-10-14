@@ -1,0 +1,13 @@
+---
+# for SNMP V2
+rocommunity: "public"
+syslocation: "MSK,Russia"
+syscontact: "admin@wsr.ru"
+
+# for SNMP V3
+method: "ro"
+authpass: "P@ssw0rd"
+privpass: "P@ssw0rd"
+username: "snmpuser"
+md5_or_sha: "SHA"
+aes_or_des: "AES"
