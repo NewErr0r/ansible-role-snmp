@@ -3,3 +3,8 @@
   include_tasks: centos_snmp_v3.yaml
   when:
     - ansible_os_family == 'RedHat'
+
+- name: Install and configure SNMP V3 on Debian 
+  include_tasks: debian_snmp_v3.yaml
+  when:
+    - ansible_os_family == 'Debian'
