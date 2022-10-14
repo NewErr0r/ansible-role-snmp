@@ -8,3 +8,19 @@
   include_tasks: debian_snmp_v3.yaml
   when:
     - ansible_os_family == 'Debian'
+
+#- name: Install and configure SNMP V3 on VyOS 
+#  vyos.vyos.vyos_config:
+#    lines:
+#      - set service snmp listen-address {{ ansible_ssh_host }}
+#      - set service snmp location {{ syslocation }}
+#      - set service snmp v3 engineid {{ engineid }} 
+#      - set service snmp v3 view {{ view }} oid 1
+#      - set service snmp v3 group {{ group }} mode {{ method }}
+#      - set service snmp v3 group {{ group }} seclevel priv
+#      - set service snmp v3 group {{ group }} view {{ view }}
+#      - set service snmp v3 user {{ username }} auth plaintext-password {{ authpass }}
+#      - set service snmp v3 user {{ username }} auth type sha 
+#      - set service snmp v3 user {{ username }} group {{ group }}
+#      - set service snmp v3 user {{ username }} privacy plaintext-password {{ privpass }}
+#      - set service snmp v3 user {{ username }} privacy type aes

@@ -11,3 +11,8 @@ privpass: "P@ssw0rd"
 username: "snmpuser"
 md5_or_sha: "SHA"
 aes_or_des: "AES"
+
+# snmp v3 for VyOS 
+engineid: "00000000000000000000000002"
+view: "snmpview1"
+group: "mygroup"
