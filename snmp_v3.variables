@@ -1,0 +1,24 @@
+#!/bin/bash
+echo '1) Set the method "ro" or "rw": ' 
+    read method
+    sed -i 's/^method:.*/method: "'$method'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '2) Set authentication password: ' 
+    read authpass
+    sed -i 's/^authpass:.*/authpass: "'$authpass'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '3) Set private key: ' 
+    read privpass
+    sed -i 's/^privpass:.*/privpass: "'$privpass'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '4) Set username: ' 
+    read username
+    sed -i 's/^username:.*/username: "'$username'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '5) Set hash function algorithm "MD5" or "SHA": ' 
+    read md5_or_sha
+    sed -i 's/^md5_or_sha:.*/md5_or_sha: "'$md5_or_sha'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '6) Set encryption algorithm "AES" or "DES": ' 
+    read aes_or_des
+    sed -i 's/^aes_or_des:.*/aes_or_des: "'$aes_or_des'"/g' ./ansible-role-snmpv3/defaults/main.yml

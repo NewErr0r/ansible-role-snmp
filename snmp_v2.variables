@@ -1,0 +1,12 @@
+#!/bin/bash
+echo '1) Set community string: ' 
+    read rocommunity
+    sed -i 's/^rocommunity:.*/rocommunity: "'$rocommunity'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '2) Set location for SNMP params: ' 
+    read syslocation
+    sed -i 's/^syslocation:.*/syslocation: "'$syslocation'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '3) Set contact for SNMP params: ' 
+    read syscontact
+    sed -i 's/^syscontact:.*/syscontact: "'$syscontact'"/g' ./ansible-role-snmpv3/defaults/main.yml
