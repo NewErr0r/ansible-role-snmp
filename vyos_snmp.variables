@@ -1,0 +1,44 @@
+#!/bin/bash
+echo '1) Set location for SNMP params: ' 
+    read syslocation
+    sed -i 's/^syslocation:.*/syslocation: "'$syslocation'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '2) Set the method "ro" or "rw": ' 
+    read method
+    sed -i 's/^method:.*/method: "'$method'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '3) Set authentication password: ' 
+    read authpass
+    sed -i 's/^authpass:.*/authpass: "'$authpass'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '4) Set private key: ' 
+    read privpass
+    sed -i 's/^privpass:.*/privpass: "'$privpass'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+echo '5) Set username: ' 
+    read username
+    sed -i 's/^username:.*/username: "'$username'"/g' ./ansible-role-snmpv3/defaults/main.yml
+
+sed -i 's/^- name: Install and configure SNMP V3 on CentOS/#- name: Install and configure SNMP V3 on CentOS/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^  include_tasks: centos_snmp_v3.yaml/#  include_tasks: centos_snmp_v3.yaml/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^  when:/#  when:/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i "s/^    - ansible_os_family == 'RedHat'/#    - ansible_os_family == 'RedHat'/g" ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^- name: Install and configure SNMP V3 on Debian/#- name: Install and configure SNMP V3 on Debian:/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^  include_tasks: debian_snmp_v3.yaml/#  include_tasks: debian_snmp_v3.yaml/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i "s/^    - ansible_os_family == 'Debian'/#    - ansible_os_family == 'Debian'/g" ./ansible-role-snmpv3/tasks/main.yml
+
+sed -i 's/^#- name: Install and configure SNMP V3 on VyOS/- name: Install and configure SNMP V3 on VyOS/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#  vyos.vyos.vyos_config:/  vyos.vyos.vyos_config:/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#    lines:/    lines:/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp listen-address {{ ansible_ssh_host }}/      - set service snmp listen-address {{ ansible_ssh_host }} /g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp location {{ syslocation }}/      - set service snmp location {{ syslocation }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 engineid {{ engineid }}/      - set service snmp v3 engineid {{ engineid }} /g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 view {{ view }} oid 1/      - set service snmp v3 view {{ view }} oid 1/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 group {{ group }} mode {{ method }}/      - set service snmp v3 group {{ group }} mode {{ method }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 group {{ group }} seclevel priv/      - set service snmp v3 group {{ group }} seclevel priv/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 group {{ group }} view {{ view }}/      - set service snmp v3 group {{ group }} view {{ view }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 user {{ username }} auth plaintext-password {{ authpass }}/      - set service snmp v3 user {{ username }} auth plaintext-password {{ authpass }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 user {{ username }} auth type sha /      - set service snmp v3 user {{ username }} auth type sha /g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 user {{ username }} group {{ group }}/      - set service snmp v3 user {{ username }} group {{ group }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 user {{ username }} privacy plaintext-password {{ privpass }}/      - set service snmp v3 user {{ username }} privacy plaintext-password {{ privpass }}/g' ./ansible-role-snmpv3/tasks/main.yml
+sed -i 's/^#      - set service snmp v3 user {{ username }} privacy type aes/      - set service snmp v3 user {{ username }} privacy type aes/g' ./ansible-role-snmpv3/tasks/main.yml
