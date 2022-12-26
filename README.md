@@ -1,4 +1,4 @@
-<h1>Автоматизация развёртывания SNMP V2 и V3  на ОС: CentOS, Debian, VyOS </h1>
+<h1 align='center'>Автоматизация развёртывания SNMP V2 и V3  на ОС: CentOS, Debian, VyOS </h1>
 
 <p>
     <strong>Шаг 1.</strong> Создание playbook для запуска роли
